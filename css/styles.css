@@ -7,6 +7,8 @@
   --darkest: #212121;
   --white: #fff;
   --black: #000;
+  --black-transparent: rgba(0, 0, 0, 20%);
+  --nearly-black: rgba(0, 0, 0, 10%);
   --grey-transparent: rgba(47, 48, 58, 80%);
   --transparent-white: rgba(255, 255, 255, 60%);
   --white-ten: rgba(255, 255, 255, 10%);
@@ -342,8 +344,6 @@ img {
   gap: 30px;
 }
 .project-link {
-  display: flex;
-  position: relative;
   transition-property: box-shadow;
   transition-duration: 250ms;
   transition-timing-function: var(--timing-function);
@@ -353,6 +353,17 @@ img {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   outline: transparent;
+}
+.project-link:hover .project-overlay,
+.project-link:focus .project-overlay {
+  transform: translateY(0);
+}
+.project-box {
+  display: flex;
+  width: 370px;
+  height: 294px;
+  position: relative;
+  overflow: hidden;
 }
 
 .project-name {
@@ -374,15 +385,21 @@ img {
   border-right: 1px solid var(--leaflet-border);
   border-bottom: 1px solid var(--leaflet-border);
 }
-.project-description {
+.project-overlay {
   position: absolute;
+  display: flex;
   top: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--brand-blue-transparent);
   color: var(--white);
   font-size: 18px;
   line-height: 1.6;
   padding: 49px 45px 49px 24px;
-  z-index: 2;
+  transform: translateY(100%);
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 .menu-container {
   display: flex;
@@ -485,4 +502,48 @@ img {
 .footer-box {
   display: flex;
   align-items: baseline;
+}
+.is-hidden {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-transparent);
+  transition-property: opacity, visibility;
+  transition-duration: 300ms;
+  transition-timing-function: var(--timing-function);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 528px;
+  height: 581px;
+  border-radius: 4px;
+  background-color: var(--white);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 1px solid var(--nearly-black);
+}
+.close-btn {
+  background-color: transparent;
 }
