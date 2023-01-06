@@ -150,23 +150,23 @@ img {
   display: none;
   position: absolute;
   top: 45px;
-  width: 100%;
+  width: 0;
   height: 4px;
   border-radius: 2px;
   background-color: white;
-  transition-property: background-color;
+  transition-property: background-color, width;
   transition-duration: 250ms;
   transition-timing-function: var(--timing-function);
 }
 .nav-link:hover,
 .nav-link:focus {
   color: var(--brand-blue);
-  outline: transparent;
 }
 .nav-link:hover::after,
 .nav-link:focus::after {
   display: block;
   background-color: var(--brand-blue);
+  width: 100%;
 }
 .nav-link-current {
   color: var(--brand-blue);
@@ -282,15 +282,15 @@ img {
   height: 44px;
   border-radius: 50%;
   color: var(--social-icon);
+  transition-property: background-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 .circle:hover,
 .circle:focus {
   background-color: var(--brand-blue);
   color: var(--white);
   outline: transparent;
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: var(--timing-function);
 }
 .circle-bottom {
   background-color: var(--white-ten);
@@ -344,6 +344,7 @@ img {
   gap: 30px;
 }
 .project-link {
+  display: block;
   transition-property: box-shadow;
   transition-duration: 250ms;
   transition-timing-function: var(--timing-function);
